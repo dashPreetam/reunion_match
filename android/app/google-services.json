@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "864978283751",
+    "firebase_url": "https://reunion-match.firebaseio.com",
+    "project_id": "reunion-match",
+    "storage_bucket": "reunion-match.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864978283751:android:cc7dddf472d2a6ccf9c642",
+        "android_client_info": {
+          "package_name": "reunion.match"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864978283751-jv34fju0a0ckn9kq4qtuviapv2rcdbdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "reunion.match",
+            "certificate_hash": "3a76f01da4a95a494297c46950cf362547e37e5c"
+          }
+        },
+        {
+          "client_id": "864978283751-e10n7cgni78humru75rbfnae66qudp0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA77DNKZ4WWhEd6tdk-acZ9k1lKQbEb1yE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864978283751-e10n7cgni78humru75rbfnae66qudp0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
