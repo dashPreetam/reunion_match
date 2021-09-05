@@ -19,11 +19,16 @@ class TeamBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TeamBloc teamBloc = TeamBlocProvider.getTeamBloc(context);
-    teamBloc.fetchTeamsDummy();
+    teamBloc.fetchTeams();
 
     return Scaffold(
       appBar: AppBar(title: Text("Teams")),
-      body: _body(teamBloc),
+      body: StreamBuilder(
+        stream: teamBloc.teamsList,
+        builder: (cont, snap) {
+          return _body(teamBloc);
+        },
+      ),
       bottomNavigationBar: _buttomNavigationBar(teamBloc),
     );
   }
@@ -35,8 +40,10 @@ class TeamBody extends StatelessWidget {
     for (var team in teams) {
       // items.add(BottomNavigationBarItem(
       //     icon: Image.network(team.logo), label: team.name));
-      items.add(
-          BottomNavigationBarItem(icon: Icon(Icons.pin), label: team.name));
+      items.add(BottomNavigationBarItem(
+          icon: Image.network(
+              "https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"),
+          label: team.name));
     }
 
     return StreamBuilder(

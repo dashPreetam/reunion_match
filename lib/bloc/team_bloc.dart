@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:reunion_match/model/player_model.dart';
 import 'package:reunion_match/model/team_model.dart';
 import 'package:rxdart/subjects.dart';
@@ -40,7 +41,46 @@ class TeamBloc {
     updateTeamsList(teams);
   }
 
-  fetchTeams() {
-    //TODO :  Implement firestore call
+  fetchTeams() async {
+    List<Team> teams = [];
+    fetchTeamsDummy();
+    teams.add(await _fetchTeam("Team A"));
+    teams.add(await _fetchTeam("Team B"));
+    updateTeamsList([]);
+    updateTeamsList(teams);
+  }
+
+  Future<Team> _fetchTeam(String code) async {
+    DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection("Teams").doc(code).get();
+
+    if (documentSnapshot.exists) {
+      List<Player> players = [];
+      print(documentSnapshot.get('name'));
+      print(documentSnapshot.get('logo'));
+      List<dynamic> temp = documentSnapshot.get('players');
+      List<DocumentReference<Map<String, dynamic>>> list = temp.cast();
+      for (var item in list) {
+        DocumentSnapshot player = await item.get();
+        print(player.get("Name"));
+        players.add(Player(player.get("Name"), player.get("Votes"),
+            player.get("votesRemaining")));
+      }
+      Team team = Team(documentSnapshot.get('name'), players[0],
+          documentSnapshot.get('logo'), players);
+      return team;
+    } else {
+      Player playerA = Player("Player A", 1, 95);
+      Player playerB = Player("Player B", 0, 23);
+      Player playerC = Player("Player C", 0, 45);
+      List<Player> players = [];
+      for (var i = 0; i < 50; i++) {
+        players.add(playerB);
+        players.add(playerC);
+      }
+      Team teamA = Team("Conquerors", playerA, "logo", players);
+
+      return teamA;
+    }
   }
 }
