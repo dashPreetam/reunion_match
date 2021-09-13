@@ -1,9 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:reunion_match/bloc/team_bloc.dart';
-import 'package:reunion_match/provider/team_bloc_provider.dart';
 import 'package:reunion_match/screen/home.dart';
-import 'package:reunion_match/screen/teams_screen.dart';
 import 'package:reunion_match/util/Constants.dart';
 
 void main() {
@@ -16,11 +13,11 @@ void main() {
       if (snapshot.connectionState == ConnectionState.done) {
         return MaterialApp(
           theme: ThemeData.dark().copyWith(
-            primaryColor: Constants.primaryColor,
+            //primaryColor: Constants.primaryColor,
           ),
           home: Container(
             decoration: BoxDecoration(gradient: Constants.gradient),
-            child: TeamScreen(),
+            child: HomeScreen(),
           ),
         );
       } else {

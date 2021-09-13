@@ -33,6 +33,14 @@ class TeamBody extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text("Teams"),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    teamBloc.refresh();
+                  },
+                  icon: Icon(Icons.refresh),
+                ),
+              ],
             ),
             body: _body(context, teamBloc),
             bottomNavigationBar: StreamBuilder<Object>(
@@ -158,7 +166,11 @@ class TeamBody extends StatelessWidget {
           ),
           width: double.infinity,
           height: 25,
-          child: Center(child: Text("${team.captain.name}", style: TextStyle(fontSize: 25),)),
+          child: Center(
+              child: Text(
+            "${team.captain.name}",
+            style: TextStyle(fontSize: 25),
+          )),
         ),
       ),
     );
